@@ -8,15 +8,17 @@ import java.util.List;
 
 
 @Stateless(name = "EtablissementEJB")
-public class EtablissementServices {
+public class EtablissementBU implements IEtabllissement{
 
     @PersistenceContext
     EntityManager em;
 
-    public EtablissementServices() {
+    public EtablissementBU() {
     }
 
-    public List<EtablissementBO> findAll(){
+
+    @Override
+    public List<EtablissementBO> findAll() {
         em.createNativeQuery("INSERT INTO etablissement (id) VALUES (1)").executeUpdate();
 
         @SuppressWarnings("unchecked")
