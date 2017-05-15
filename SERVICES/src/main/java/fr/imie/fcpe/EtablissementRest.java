@@ -1,6 +1,7 @@
 package fr.imie.fcpe;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,7 +15,7 @@ import java.util.List;
 public class EtablissementRest {
 
     @EJB
-    private EtablissementServices es;
+    IEtabllissement es;
 
     @GET
     public List<EtablissementBO> findAll(){

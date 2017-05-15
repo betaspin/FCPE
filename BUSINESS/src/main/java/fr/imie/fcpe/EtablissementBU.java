@@ -16,7 +16,6 @@ public class EtablissementBU implements IEtabllissement{
     public EtablissementBU() {
     }
 
-
     @Override
     public List<EtablissementBO> findAll() {
         em.createNativeQuery("INSERT INTO etablissement (id) VALUES (1)").executeUpdate();

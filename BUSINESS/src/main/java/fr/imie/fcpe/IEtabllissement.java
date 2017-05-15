@@ -1,7 +1,9 @@
 package fr.imie.fcpe;
 
-/**
- * Created by betaspin on 15/05/17.
- */
+
+import java.util.List;
+
 public interface IEtabllissement {
+
+    public List<EtablissementBO> findAll();
 }
