@@ -44,4 +44,12 @@ public class Etablissement {
     public void setVille(String ville) {
         this.ville = ville;
     }
+
+    public static Etablissement mapEtablissementBOToEtablissement(EtablissementBO etablissementBO){
+        Etablissement etablissement = new Etablissement();
+        etablissement.setId(etablissementBO.getId());
+        etablissement.setNom(etablissementBO.getNom());
+        etablissement.setVille(etablissementBO.getVille());
+        return etablissement;
+    }
 }

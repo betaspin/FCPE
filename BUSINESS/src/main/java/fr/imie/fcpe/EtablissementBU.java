@@ -18,8 +18,6 @@ public class EtablissementBU implements IEtabllissement{
 
     @Override
     public List<EtablissementBO> findAll() {
-        em.createNativeQuery("INSERT INTO etablissement (id) VALUES (1)").executeUpdate();
-
         @SuppressWarnings("unchecked")
         List<EtablissementEntity> data = em.createNamedQuery("EtablissementEntity.findAll").getResultList();
 
@@ -30,5 +28,12 @@ public class EtablissementBU implements IEtabllissement{
         }
 
         return etablissementsBO;
+    }
+
+    @Override
+    public EtablissementBO createEtablissement(EtablissementBO etablissement) {
+        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+        em.persist(etablissementEntity);
+        return etablissement;
     }
 }

@@ -48,6 +48,18 @@ public class EtablissementBO {
     public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
         EtablissementBO etablissementBO = new EtablissementBO();
         etablissementBO.setId(etablissementEntity.getId());
+        etablissementBO.setNom(etablissementEntity.getNom());
+        etablissementBO.setVille(etablissementEntity.getVille());
         return etablissementBO;
+    }
+
+    public static EtablissementEntity mapEtablissementBOToEntity(EtablissementBO etablissement){
+        EtablissementEntity etablissementEntity = new EtablissementEntity();
+        if(etablissement.getId() != null){
+         etablissementEntity.setId(etablissement.getId());
+        }
+        etablissementEntity.setNom(etablissement.getNom());
+        etablissementEntity.setVille(etablissement.getVille());
+        return etablissementEntity;
     }
 }
