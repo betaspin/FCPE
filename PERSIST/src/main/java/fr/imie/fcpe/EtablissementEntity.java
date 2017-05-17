@@ -28,7 +28,5 @@ public class EtablissementEntity implements Serializable{
 
     private String ville;
     public String getVille() { return ville; }
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
+    public void setVille(String ville) { this.ville = ville; }
 }

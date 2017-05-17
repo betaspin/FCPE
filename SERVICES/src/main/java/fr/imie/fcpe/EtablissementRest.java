@@ -12,16 +12,34 @@ import java.util.List;
 public class EtablissementRest {
 
     @EJB
-    IEtabllissement etablissementService;
+    IEtablissement etablissementService;
 
     @GET
     public List<EtablissementBO> findAll(){
         return etablissementService.findAll();
     }
 
+    @GET
+    @Path("/{id}")
+    public EtablissementBO findOne(@PathParam("id") Integer idEtablissement){
+        return etablissementService.findOne(idEtablissement);
+    }
+
     @POST
-    public Response insertEtablissement(EtablissementBO etablissementBO){
-        etablissementBO = etablissementService.createEtablissement(etablissementBO);
-        return Response.ok(etablissementBO).build();
+    public Response insertEtablissement(EtablissementBO etablissement){
+        etablissement = etablissementService.createEtablissement(etablissement);
+        return Response.ok(etablissement).build();
+    }
+
+    @PUT
+    public Response updateEtablissement(EtablissementBO etablissement){
+        etablissement = etablissementService.updateEtablissement(etablissement);
+        return Response.ok(etablissement).build();
+    }
+
+    @DELETE
+    public Response deleteEtablissement(EtablissementBO etablissement){
+        etablissement = etablissementService.deleteEtablissement(etablissement);
+        return Response.ok(etablissement).build();
     }
 }

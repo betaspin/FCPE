@@ -8,12 +8,19 @@ import java.util.List;
 
 
 @Stateless(name = "EtablissementEJB")
-public class EtablissementBU implements IEtabllissement{
+public class EtablissementBU implements IEtablissement{
 
     @PersistenceContext
     EntityManager em;
 
     public EtablissementBU() {
+    }
+
+    @Override
+    public EtablissementBO findOne(Integer idEtablissement) {
+        EtablissementEntity etablissementEntity = em.find(EtablissementEntity.class, idEtablissement);
+        EtablissementBO etablissement = EtablissementBO.mapEtablissementEntityToBO(etablissementEntity);
+        return etablissement;
     }
 
     @Override
@@ -34,6 +41,22 @@ public class EtablissementBU implements IEtabllissement{
     public EtablissementBO createEtablissement(EtablissementBO etablissement) {
         EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
         em.persist(etablissementEntity);
+        return etablissement;
+    }
+
+    @Override
+    public EtablissementBO updateEtablissement(EtablissementBO etablissement) {
+        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+        etablissementEntity = em.merge(etablissementEntity);
+        etablissement = EtablissementBO.mapEtablissementEntityToBO(etablissementEntity);
+        return etablissement;
+    }
+
+    @Override
+    public EtablissementBO deleteEtablissement(EtablissementBO etablissement) {
+        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+        etablissementEntity = em.merge(etablissementEntity);
+        em.remove(etablissementEntity);
         return etablissement;
     }
 }
