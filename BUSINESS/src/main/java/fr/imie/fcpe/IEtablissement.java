@@ -10,6 +10,6 @@ public interface IEtablissement {
     public List<EtablissementBO> findAll();
     public EtablissementBO createEtablissement(EtablissementBO etablissement);
     public EtablissementBO updateEtablissement(EtablissementBO etablissement);
-    public EtablissementBO deleteEtablissement(EtablissementBO etablissement);
+    public EtablissementBO deleteEtablissement(Integer idEtablissement);
 
 }

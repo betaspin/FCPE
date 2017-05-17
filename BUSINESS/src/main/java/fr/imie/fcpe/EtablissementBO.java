@@ -7,6 +7,7 @@ public class EtablissementBO {
     private String voie;
     private String codePostal;
     private String ville;
+    private Boolean archive;
 
     public Integer getId() {
         return id;
@@ -44,22 +45,24 @@ public class EtablissementBO {
     public void setVille(String ville) {
         this.ville = ville;
     }
+    public Boolean getArchive() { return archive; }
+    public void setArchive(Boolean archive) { this.archive = archive; }
 
     public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
         EtablissementBO etablissementBO = new EtablissementBO();
         etablissementBO.setId(etablissementEntity.getId());
         etablissementBO.setNom(etablissementEntity.getNom());
         etablissementBO.setVille(etablissementEntity.getVille());
+        etablissementBO.setArchive(etablissementEntity.getArchive());
         return etablissementBO;
     }
 
     public static EtablissementEntity mapEtablissementBOToEntity(EtablissementBO etablissement){
         EtablissementEntity etablissementEntity = new EtablissementEntity();
-        if(etablissement.getId() != null){
-         etablissementEntity.setId(etablissement.getId());
-        }
+        etablissementEntity.setId(etablissement.getId());
         etablissementEntity.setNom(etablissement.getNom());
         etablissementEntity.setVille(etablissement.getVille());
+        etablissementEntity.setArchive(etablissement.getArchive());
         return etablissementEntity;
     }
 }

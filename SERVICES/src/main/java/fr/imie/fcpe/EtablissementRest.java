@@ -38,8 +38,9 @@ public class EtablissementRest {
     }
 
     @DELETE
-    public Response deleteEtablissement(EtablissementBO etablissement){
-        etablissement = etablissementService.deleteEtablissement(etablissement);
+    @Path("/{id}")
+    public Response deleteEtablissement(@PathParam("id") Integer idEtablissement){
+        EtablissementBO etablissement = etablissementService.deleteEtablissement(idEtablissement);
         return Response.ok(etablissement).build();
     }
 }

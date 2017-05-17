@@ -53,10 +53,13 @@ public class EtablissementBU implements IEtablissement{
     }
 
     @Override
-    public EtablissementBO deleteEtablissement(EtablissementBO etablissement) {
+    public EtablissementBO deleteEtablissement(Integer idEtablissement) {
+        EtablissementBO etablissement = findOne(idEtablissement);
+        etablissement.setId(idEtablissement);
+        etablissement.setArchive(true);
         EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
-        etablissementEntity = em.merge(etablissementEntity);
-        em.remove(etablissementEntity);
+        em.merge(etablissementEntity);
+        //em.remove(etablissementEntity);
         return etablissement;
     }
 }
