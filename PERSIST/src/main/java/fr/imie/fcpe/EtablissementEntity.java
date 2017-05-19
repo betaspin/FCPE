@@ -2,6 +2,7 @@ package fr.imie.fcpe;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -33,4 +34,13 @@ public class EtablissementEntity implements Serializable{
     private Boolean archive;
     public Boolean getArchive() { return archive; }
     public void setArchive(Boolean archive) { this.archive = archive; }
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+            name="etablissement_type_etablissement",
+            joinColumns=@JoinColumn(name="id_etablissement", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="id_type_etablissement", referencedColumnName="id"))
+    private List<TypeEtablissementEntity> types;
+    public List<TypeEtablissementEntity> getTypes() { return types; }
+    public void setTypes(List<TypeEtablissementEntity> types) { this.types = types; }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class EtablissementRest {
 
     @EJB
-    IEtablissement etablissementService;
+    ICRUD<EtablissementBO> etablissementService;
 
     @GET
     public List<EtablissementBO> findAll(){
@@ -27,20 +27,20 @@ public class EtablissementRest {
 
     @POST
     public Response insertEtablissement(EtablissementBO etablissement){
-        etablissement = etablissementService.createEtablissement(etablissement);
+        etablissement = etablissementService.create(etablissement);
         return Response.ok(etablissement).build();
     }
 
     @PUT
     public Response updateEtablissement(EtablissementBO etablissement){
-        etablissement = etablissementService.updateEtablissement(etablissement);
+        etablissement = etablissementService.update(etablissement);
         return Response.ok(etablissement).build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response deleteEtablissement(@PathParam("id") Integer idEtablissement){
-        EtablissementBO etablissement = etablissementService.deleteEtablissement(idEtablissement);
+        EtablissementBO etablissement = etablissementService.delete(idEtablissement);
         return Response.ok(etablissement).build();
     }
 }

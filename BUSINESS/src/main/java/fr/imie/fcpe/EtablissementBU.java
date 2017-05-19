@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Stateless(name = "EtablissementEJB")
-public class EtablissementBU implements IEtablissement{
+@Stateless
+public class EtablissementBU implements ICRUD<EtablissementBO> {
 
     @PersistenceContext
     EntityManager em;
@@ -19,7 +19,7 @@ public class EtablissementBU implements IEtablissement{
     @Override
     public EtablissementBO findOne(Integer idEtablissement) {
         EtablissementEntity etablissementEntity = em.find(EtablissementEntity.class, idEtablissement);
-        EtablissementBO etablissement = EtablissementBO.mapEtablissementEntityToBO(etablissementEntity);
+        EtablissementBO etablissement = EtablissementMap.mapEtablissementEntityToBO(etablissementEntity);
         return etablissement;
     }
 
@@ -31,33 +31,33 @@ public class EtablissementBU implements IEtablissement{
         List<EtablissementBO> etablissementsBO = new ArrayList<EtablissementBO>();
 
         for(EtablissementEntity etablissementEntity: data){
-            etablissementsBO.add(EtablissementBO.mapEtablissementEntityToBO(etablissementEntity));
+            etablissementsBO.add(EtablissementMap.mapEtablissementEntityToBO(etablissementEntity));
         }
 
         return etablissementsBO;
     }
 
     @Override
-    public EtablissementBO createEtablissement(EtablissementBO etablissement) {
-        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+    public EtablissementBO create(EtablissementBO etablissement) {
+        EtablissementEntity etablissementEntity = EtablissementMap.mapEtablissementBOToEntity(etablissement);
         em.persist(etablissementEntity);
         return etablissement;
     }
 
     @Override
-    public EtablissementBO updateEtablissement(EtablissementBO etablissement) {
-        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+    public EtablissementBO update(EtablissementBO etablissement) {
+        EtablissementEntity etablissementEntity = EtablissementMap.mapEtablissementBOToEntity(etablissement);
         etablissementEntity = em.merge(etablissementEntity);
-        etablissement = EtablissementBO.mapEtablissementEntityToBO(etablissementEntity);
+        etablissement = EtablissementMap.mapEtablissementEntityToBO(etablissementEntity);
         return etablissement;
     }
 
     @Override
-    public EtablissementBO deleteEtablissement(Integer idEtablissement) {
+    public EtablissementBO delete(Integer idEtablissement) {
         EtablissementBO etablissement = findOne(idEtablissement);
         etablissement.setId(idEtablissement);
         etablissement.setArchive(true);
-        EtablissementEntity etablissementEntity = EtablissementBO.mapEtablissementBOToEntity(etablissement);
+        EtablissementEntity etablissementEntity = EtablissementMap.mapEtablissementBOToEntity(etablissement);
         em.merge(etablissementEntity);
         //em.remove(etablissementEntity);
         return etablissement;

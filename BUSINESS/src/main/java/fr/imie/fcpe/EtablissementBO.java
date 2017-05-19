@@ -1,5 +1,7 @@
 package fr.imie.fcpe;
 
+import java.util.List;
+
 public class EtablissementBO {
     private Integer id;
     private String nom;
@@ -8,6 +10,7 @@ public class EtablissementBO {
     private String codePostal;
     private String ville;
     private Boolean archive;
+    private List types;
 
     public Integer getId() {
         return id;
@@ -47,7 +50,9 @@ public class EtablissementBO {
     }
     public Boolean getArchive() { return archive; }
     public void setArchive(Boolean archive) { this.archive = archive; }
-
+    public List getTypes() { return types; }
+    public void setTypes(List types) { this.types = types; }
+    /*
     public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
         EtablissementBO etablissementBO = new EtablissementBO();
         etablissementBO.setId(etablissementEntity.getId());
@@ -64,5 +69,5 @@ public class EtablissementBO {
         etablissementEntity.setVille(etablissement.getVille());
         etablissementEntity.setArchive(etablissement.getArchive());
         return etablissementEntity;
-    }
+    }*/
 }
