@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="EtablissementEntity.findAll", query="SELECT e FROM EtablissementEntity e WHERE E.archive = false"),
+        @NamedQuery(name="EtablissementEntity.findAll", query="SELECT e FROM EtablissementEntity e WHERE e.archive = false"),
         @NamedQuery(name="EtablissementEntity.findOne", query="SELECT e FROM EtablissementEntity e WHERE e.id =:id")
 })
 @Table(name = "etablissement")

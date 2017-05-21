@@ -27,6 +27,7 @@ public class EtablissementBU implements ICRUD<EtablissementBO> {
     public List<EtablissementBO> findAll() {
         @SuppressWarnings("unchecked")
         List<EtablissementEntity> data = em.createNamedQuery("EtablissementEntity.findAll").getResultList();
+        System.out.print(data.size());
 
         List<EtablissementBO> etablissementsBO = new ArrayList<EtablissementBO>();
 
