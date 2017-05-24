@@ -58,19 +58,20 @@ public class QuestionMapping {
 	 * @param reponsesProposeesEntity
 	 * @return the corresponding QuestionEntity object
 	 */
-	public static QuestionEntity mapQuestionBOToEntity(final QuestionBO questionBO, final TypeQuestionEntity typeQuestionEntity, final AdministrateurEntity administrateurEntity, final List<ReponseProposeeEntity> reponsesProposeesEntity) {
+	public static QuestionEntity mapQuestionBOToEntity(final QuestionBO questionBO, final TypeQuestionEntity typeQuestionEntity, final AdministrateurEntity administrateurEntity, final List<ReponseProposeeEntity> reponsesProposeesEntity, final List<FormulaireEntity> formulairesEntity) {
 		QuestionEntity questionEntity = new QuestionEntity();
 		questionEntity.setId(questionBO.getId());
 		questionEntity.setIntitule(questionBO.getIntitule());
-		questionEntity.setObligatoire(questionEntity.getObligatoire());
-		questionEntity.setAideContextuelle(questionEntity.getAideContextuelle());
-		questionEntity.setStatut(questionEntity.getStatut());
-		questionEntity.setEtat(questionEntity.getEtat());
-		questionEntity.setTag(questionEntity.getTag());
+		questionEntity.setObligatoire(questionBO.getObligatoire());
+		questionEntity.setAideContextuelle(questionBO.getAideContextuelle());
+		questionEntity.setStatut(questionBO.getStatut());
+		questionEntity.setEtat(questionBO.getEtat());
+		questionEntity.setTag(questionBO.getTag());
 		questionEntity.setArchive(questionBO.getArchive());
 		questionEntity.setTypeQuestion(typeQuestionEntity);
 		questionEntity.setAdministrateur(administrateurEntity);
 		questionEntity.setReponseproposees(reponsesProposeesEntity);
+		questionEntity.setFormulaires(formulairesEntity);
 		return questionEntity;
 	}
 	
