@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/etablissement")
@@ -13,10 +14,16 @@ public class EtablissementRest {
 
     @EJB
     ICRUD<EtablissementBO> etablissementService;
+    //EtablissementBU etablissementService;
 
     @GET
-    public List<EtablissementBO> findAll(){
-        return etablissementService.findAll();
+    public List<EtablissementWO> findAll(){
+        List<EtablissementBO> etablissementsBO = etablissementService.findAll();
+        List<EtablissementWO> etablissementsWO = new ArrayList<>();
+        for(EtablissementBO etablissementBO : etablissementsBO) {
+            etablissementsWO.add(EtablissementMap.mapEtablissementBOToEtablissementWO(etablissementBO));
+        }
+        return etablissementsWO;
     }
 
     @GET

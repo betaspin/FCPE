@@ -10,7 +10,7 @@ public class EtablissementBO {
     private String codePostal;
     private String ville;
     private Boolean archive;
-    private List types;
+    private List<TypeEtablissementBO> types;
 
     public Integer getId() {
         return id;
@@ -50,24 +50,6 @@ public class EtablissementBO {
     }
     public Boolean getArchive() { return archive; }
     public void setArchive(Boolean archive) { this.archive = archive; }
-    public List getTypes() { return types; }
-    public void setTypes(List types) { this.types = types; }
-    /*
-    public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
-        EtablissementBO etablissementBO = new EtablissementBO();
-        etablissementBO.setId(etablissementEntity.getId());
-        etablissementBO.setNom(etablissementEntity.getNom());
-        etablissementBO.setVille(etablissementEntity.getVille());
-        etablissementBO.setArchive(etablissementEntity.getArchive());
-        return etablissementBO;
-    }
-
-    public static EtablissementEntity mapEtablissementBOToEntity(EtablissementBO etablissement){
-        EtablissementEntity etablissementEntity = new EtablissementEntity();
-        etablissementEntity.setId(etablissement.getId());
-        etablissementEntity.setNom(etablissement.getNom());
-        etablissementEntity.setVille(etablissement.getVille());
-        etablissementEntity.setArchive(etablissement.getArchive());
-        return etablissementEntity;
-    }*/
+    public List<TypeEtablissementBO> getTypes() { return types; }
+    public void setTypes(List<TypeEtablissementBO> types) { this.types = types; }
 }

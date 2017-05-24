@@ -1,12 +1,16 @@
 package fr.imie.fcpe;
 
-public class Etablissement {
+import java.util.ArrayList;
+import java.util.List;
+
+public class EtablissementWO {
     private Integer id;
     private String nom;
     private String numVoie;
     private String voie;
     private String codePostal;
     private String ville;
+    private List<TypeEtablissementWO> types;
 
     public Integer getId() {
         return id;
@@ -44,12 +48,6 @@ public class Etablissement {
     public void setVille(String ville) {
         this.ville = ville;
     }
-
-    public static Etablissement mapEtablissementBOToEtablissement(EtablissementBO etablissementBO){
-        Etablissement etablissement = new Etablissement();
-        etablissement.setId(etablissementBO.getId());
-        etablissement.setNom(etablissementBO.getNom());
-        etablissement.setVille(etablissementBO.getVille());
-        return etablissement;
-    }
+    public List<TypeEtablissementWO> getTypes() { return types; }
+    public void setTypes(List<TypeEtablissementWO> types) { this.types = types; }
 }

@@ -1,8 +1,8 @@
 package fr.imie.fcpe;
 
-/**
- * Created by betaspin on 18/05/17.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class EtablissementMap {
 
     public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
@@ -11,7 +11,15 @@ public class EtablissementMap {
         etablissementBO.setNom(etablissementEntity.getNom());
         etablissementBO.setVille(etablissementEntity.getVille());
         etablissementBO.setArchive(etablissementEntity.getArchive());
-        etablissementBO.setTypes(etablissementEntity.getTypes());
+
+        // Mapping types
+        List<TypeEtablissementBO> typesBO = new ArrayList<>();
+        List<TypeEtablissementEntity> typesEntity = etablissementEntity.getTypes();
+        for(TypeEtablissementEntity typeEntity : typesEntity){
+
+        }
+        etablissementBO.setTypes(typesBO);
+
         return etablissementBO;
     }
 

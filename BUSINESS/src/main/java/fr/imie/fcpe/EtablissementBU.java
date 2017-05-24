@@ -16,14 +16,14 @@ public class EtablissementBU implements ICRUD<EtablissementBO> {
     public EtablissementBU() {
     }
 
-    @Override
+    //@Override
     public EtablissementBO findOne(Integer idEtablissement) {
         EtablissementEntity etablissementEntity = em.find(EtablissementEntity.class, idEtablissement);
         EtablissementBO etablissement = EtablissementMap.mapEtablissementEntityToBO(etablissementEntity);
         return etablissement;
     }
 
-    @Override
+    //@Override
     public List<EtablissementBO> findAll() {
         @SuppressWarnings("unchecked")
         List<EtablissementEntity> data = em.createNamedQuery("EtablissementEntity.findAll").getResultList();
@@ -37,14 +37,14 @@ public class EtablissementBU implements ICRUD<EtablissementBO> {
         return etablissementsBO;
     }
 
-    @Override
+    //@Override
     public EtablissementBO create(EtablissementBO etablissement) {
         EtablissementEntity etablissementEntity = EtablissementMap.mapEtablissementBOToEntity(etablissement);
         em.persist(etablissementEntity);
         return etablissement;
     }
 
-    @Override
+    //@Override
     public EtablissementBO update(EtablissementBO etablissement) {
         EtablissementEntity etablissementEntity = EtablissementMap.mapEtablissementBOToEntity(etablissement);
         etablissementEntity = em.merge(etablissementEntity);
@@ -52,7 +52,7 @@ public class EtablissementBU implements ICRUD<EtablissementBO> {
         return etablissement;
     }
 
-    @Override
+    //@Override
     public EtablissementBO delete(Integer idEtablissement) {
         EtablissementBO etablissement = findOne(idEtablissement);
         etablissement.setId(idEtablissement);
