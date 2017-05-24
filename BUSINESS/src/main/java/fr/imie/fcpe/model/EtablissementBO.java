@@ -1,16 +1,16 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class EtablissementWO {
+public class EtablissementBO {
     private Integer id;
     private String nom;
     private String numVoie;
     private String voie;
     private String codePostal;
     private String ville;
-    private List<TypeEtablissementWO> types;
+    private Boolean archive;
+    private List<TypeEtablissementBO> types;
 
     public Integer getId() {
         return id;
@@ -48,6 +48,8 @@ public class EtablissementWO {
     public void setVille(String ville) {
         this.ville = ville;
     }
-    public List<TypeEtablissementWO> getTypes() { return types; }
-    public void setTypes(List<TypeEtablissementWO> types) { this.types = types; }
+    public Boolean getArchive() { return archive; }
+    public void setArchive(Boolean archive) { this.archive = archive; }
+    public List<TypeEtablissementBO> getTypes() { return types; }
+    public void setTypes(List<TypeEtablissementBO> types) { this.types = types; }
 }

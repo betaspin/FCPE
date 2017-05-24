@@ -1,4 +1,7 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.service;
+
+import fr.imie.fcpe.model.EtablissementBO;
+import fr.imie.fcpe.model.TypeEtablissementBO;
 
 import java.util.ArrayList;
 import java.util.List;

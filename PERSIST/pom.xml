@@ -14,15 +14,18 @@
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <!--<dependency>-->
-            <!--<groupId>org.postgresql</groupId>-->
-            <!--<artifactId>postgresql</artifactId>-->
-            <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+    		<groupId>org.postgresql</groupId>
+    		<artifactId>postgresql</artifactId>
+    		<version>42.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
+		<dependency>
+    		<groupId>org.eclipse.persistence</groupId>
+    		<artifactId>org.eclipse.persistence.jpa</artifactId>
+    		</dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>

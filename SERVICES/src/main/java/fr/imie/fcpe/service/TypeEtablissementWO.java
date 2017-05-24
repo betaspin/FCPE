@@ -1,8 +1,6 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.service;
 
-import java.util.List;
-
-public class TypeEtablissementBO {
+public class TypeEtablissementWO {
     private Integer id;
     private String label;
 

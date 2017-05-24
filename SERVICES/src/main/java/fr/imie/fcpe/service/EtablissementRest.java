@@ -1,6 +1,9 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.service;
+
+import fr.imie.fcpe.model.EtablissementBO;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -13,8 +16,8 @@ import java.util.List;
 public class EtablissementRest {
 
     @EJB
-    ICRUD<EtablissementBO> etablissementService;
-    //EtablissementBU etablissementService;
+    //ICRUD<EtablissementBO> etablissementService;
+    EtablissementBU etablissementService;
 
     @GET
     public List<EtablissementWO> findAll(){

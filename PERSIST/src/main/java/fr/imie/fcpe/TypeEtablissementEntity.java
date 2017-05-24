@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "type_etablissement")
+@Table(name = "typeetablissement")
 public class TypeEtablissementEntity implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -20,5 +20,5 @@ public class TypeEtablissementEntity implements Serializable{
 
     private String label;
     public String getLabel(){ return label; }
-    public void setLabel(String nom) { this.label = label; }
+    public void setLabel(String label) { this.label = label; }
 }

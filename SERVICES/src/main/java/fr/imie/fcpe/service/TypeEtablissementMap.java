@@ -1,8 +1,7 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.service;
 
-/**
- * Created by betaspin on 24/05/17.
- */
+import fr.imie.fcpe.model.TypeEtablissementBO;
+
 public class TypeEtablissementMap {
 
     public static TypeEtablissementWO mapTypeEtablissementBOToTypeEtablissementWO(TypeEtablissementBO typeEtablissementBO){
