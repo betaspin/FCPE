@@ -1,4 +1,4 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.service;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import java.util.List;
         @NamedQuery(name="EtablissementEntity.findOne", query="SELECT e FROM EtablissementEntity e WHERE e.id =:id")
 })
 @Table(name = "etablissement")
-public class EtablissementEntity implements Serializable{
+public class EtablissementEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -37,9 +37,9 @@ public class EtablissementEntity implements Serializable{
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
-            name="etablissement_type_etablissement",
-            joinColumns=@JoinColumn(name="id_etablissement", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="id_type_etablissement", referencedColumnName="id"))
+            name="etablissement_typeetablissement",
+            joinColumns=@JoinColumn(name="id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="id_typeetablissement", referencedColumnName="id"))
     private List<TypeEtablissementEntity> types;
     public List<TypeEtablissementEntity> getTypes() { return types; }
     public void setTypes(List<TypeEtablissementEntity> types) { this.types = types; }

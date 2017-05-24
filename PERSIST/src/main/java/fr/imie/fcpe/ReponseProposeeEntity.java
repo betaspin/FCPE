@@ -1,0 +1,60 @@
+package fr.imie.fcpe;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+
+/**
+ * The persistent class for the reponseproposee database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="ReponseProposeeEntity.findAll", query="SELECT r FROM ReponseProposeeEntity r")
+@Table(name = "reponseproposee")
+public class ReponseProposeeEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private Integer id;
+
+	private String label;
+
+	//bi-directional many-to-one association to Question
+	@ManyToOne
+	@JoinColumn(name="id_question")
+	private QuestionEntity question;
+
+	public ReponseProposeeEntity() {
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getLabel() {
+		return this.label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public QuestionEntity getQuestion() {
+		return this.question;
+	}
+
+	public void setQuestion(QuestionEntity question) {
+		this.question = question;
+	}
+
+}

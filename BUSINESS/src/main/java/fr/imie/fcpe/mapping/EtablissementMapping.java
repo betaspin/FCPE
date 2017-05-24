@@ -1,9 +1,13 @@
-package fr.imie.fcpe;
+package fr.imie.fcpe.mapping;
 
-/**
- * Created by betaspin on 18/05/17.
- */
-public class EtablissementMap {
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.imie.fcpe.EtablissementEntity;
+import fr.imie.fcpe.TypeEtablissementEntity;
+import fr.imie.fcpe.model.EtablissementBO;
+
+public class EtablissementMapping {
 
     public static EtablissementBO mapEtablissementEntityToBO(EtablissementEntity etablissementEntity){
         EtablissementBO etablissementBO = new EtablissementBO();
@@ -11,16 +15,23 @@ public class EtablissementMap {
         etablissementBO.setNom(etablissementEntity.getNom());
         etablissementBO.setVille(etablissementEntity.getVille());
         etablissementBO.setArchive(etablissementEntity.getArchive());
-        etablissementBO.setTypes(etablissementEntity.getTypes());
+        
+        List<String> typesBO = new ArrayList<>();
+        for (TypeEtablissementEntity type : etablissementEntity.getTypes()) {
+        	typesBO.add(type.getLabel());
+		}
+        etablissementBO.setTypes(typesBO);
         return etablissementBO;
     }
 
-    public static EtablissementEntity mapEtablissementBOToEntity(EtablissementBO etablissement){
+    public static EtablissementEntity mapEtablissementBOToEntity(EtablissementBO etablissement, List<TypeEtablissementEntity> typesEtablissementEntity){
         EtablissementEntity etablissementEntity = new EtablissementEntity();
         etablissementEntity.setId(etablissement.getId());
         etablissementEntity.setNom(etablissement.getNom());
         etablissementEntity.setVille(etablissement.getVille());
         etablissementEntity.setArchive(etablissement.getArchive());
+        etablissementEntity.setTypes(typesEtablissementEntity);
+        
         return etablissementEntity;
     }
 
