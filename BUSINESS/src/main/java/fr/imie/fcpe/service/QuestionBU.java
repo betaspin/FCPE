@@ -1,7 +1,9 @@
 package fr.imie.fcpe.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -85,30 +87,41 @@ public class QuestionBU {
 
     	@SuppressWarnings("unchecked")
 		List<ReponseProposeeEntity> reponsesProposeesEntity = em.createNamedQuery("ReponseProposeeEntity.findAllWithQuestionId").setParameter("id", question.getId()).getResultList();
+    	Map<ReponseProposeeEntity, Boolean> reponsesProposeesValidees = new HashMap<>();
+    	
+    	reponsesProposeesEntity.forEach((item) -> reponsesProposeesValidees.put(item, false));
 
     	QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, reponsesProposeesEntity, formulairesEntity);
     	questionEntity = em.merge(questionEntity);
-    	question = QuestionMapping.mapQuestionEntityToBO(questionEntity);
-    	
+
     	for (String labelReponseProposee : question.getReponsesProposees()) {
     		ReponseProposeeEntity reponseProposeeEntityToUpdate = isReponseProposeeToUpdate(labelReponseProposee, reponsesProposeesEntity);
     		if (reponseProposeeEntityToUpdate != null) {
     			em.merge(reponseProposeeEntityToUpdate);
+        		reponsesProposeesValidees.put(reponseProposeeEntityToUpdate, true);
     		}
     		else {
         		ReponseProposeeEntity reponseProposeeEntity = new ReponseProposeeEntity();
         		reponseProposeeEntity.setLabel(labelReponseProposee);
         		reponseProposeeEntity.setQuestion(questionEntity);
         		em.persist(reponseProposeeEntity);
-        		reponsesProposeesEntity.add(reponseProposeeEntity);    			
-    		}
+        		reponsesProposeesEntity.add(reponseProposeeEntity);
 
+    		}
 		}
+		
+    	reponsesProposeesValidees.forEach((item, bool) -> {
+    		if (bool == false) {
+    			em.remove(item);
+    			reponsesProposeesEntity.remove(item);
+    		}
+    	});
     	
     	// Persist the question with the link to ReponsesProposees
     	questionEntity.setReponseproposees(reponsesProposeesEntity);
     	em.merge(questionEntity);
     	
+    	question = QuestionMapping.mapQuestionEntityToBO(questionEntity);
     	return question;
     }
     
