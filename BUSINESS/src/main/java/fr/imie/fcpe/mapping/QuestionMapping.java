@@ -83,7 +83,7 @@ public class QuestionMapping {
         Map<String,String> myMap = new HashMap<String,String>();
         myMap.put("radio", "Bouton radio");
         myMap.put("checkbox", "Case à cocher");
-        myMap.put("text", "Texte Libre");
+        myMap.put("text", "Texte libre");
         myMap.put("date", "Date");
         myMap.put("number", "Nombre");
         return myMap;
@@ -97,7 +97,7 @@ public class QuestionMapping {
         Map<String,String> myMap = new HashMap<String,String>();
         myMap.put("Bouton radio", "radio");
         myMap.put("Case à cocher", "checkbox");
-        myMap.put("Texte Libre", "text");
+        myMap.put("Texte libre", "text");
         myMap.put("Date", "date");
         myMap.put("Nombre", "number");
         myMap.put("Liste déroulante", "checkbox");
