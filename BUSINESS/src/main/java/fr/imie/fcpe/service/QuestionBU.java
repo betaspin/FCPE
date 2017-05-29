@@ -1,6 +1,8 @@
 package fr.imie.fcpe.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,14 @@ public class QuestionBU {
     public List<QuestionBO> findAll() {
         @SuppressWarnings("unchecked")
         List<QuestionEntity> data = em.createNamedQuery("QuestionEntity.findAll").getResultList();
+        
+        // All the questions will be sort by the field Intitule
+        Collections.sort(data, new Comparator<QuestionEntity>() {
+        	@Override
+        	public int compare(QuestionEntity qe2, QuestionEntity qe1) {
+        		return  qe2.getIntitule().compareTo(qe1.getIntitule());
+        	}
+        });
 
         List<QuestionBO> questionsBO = new ArrayList<QuestionBO>();
 
