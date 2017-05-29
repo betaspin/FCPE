@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "QuestionEntity.findAll", query = "SELECT e FROM QuestionEntity e WHERE e.archive = false"),
+    @NamedQuery(name = "QuestionEntity.findAll", query = "SELECT e FROM QuestionEntity e WHERE e.archive = false ORDER BY e.intitule"),
     @NamedQuery(name = "QuestionEntity.findOne", query = ""
     		+ "SELECT DISTINCT q FROM QuestionEntity q, ReponseProposeeEntity rp JOIN rp.question rpquestion WHERE rpquestion.id = q.id AND q.id = :id")
 })

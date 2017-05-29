@@ -36,12 +36,12 @@ public class QuestionBU {
         List<QuestionEntity> data = em.createNamedQuery("QuestionEntity.findAll").getResultList();
         
         // All the questions will be sort by the field Intitule
-        Collections.sort(data, new Comparator<QuestionEntity>() {
-        	@Override
-        	public int compare(QuestionEntity qe2, QuestionEntity qe1) {
-        		return  qe2.getIntitule().compareTo(qe1.getIntitule());
-        	}
-        });
+//        Collections.sort(data, new Comparator<QuestionEntity>() {
+//        	@Override
+//        	public int compare(QuestionEntity qe2, QuestionEntity qe1) {
+//        		return  qe2.getIntitule().compareTo(qe1.getIntitule());
+//        	}
+//        });
 
         List<QuestionBO> questionsBO = new ArrayList<QuestionBO>();
 
