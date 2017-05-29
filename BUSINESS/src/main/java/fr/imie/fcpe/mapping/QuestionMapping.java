@@ -32,7 +32,7 @@ public class QuestionMapping {
 		questionBO.setEtat(questionEntity.getEtat());
 		questionBO.setTag(questionEntity.getTag());
 		questionBO.setArchive(questionEntity.getArchive());
-		questionBO.setTypeQuestion(QuestionMapping.typeQuestionFrontEndToBackEnd.get(questionEntity.getTypequestion().getLabel()));
+		questionBO.setTypeQuestion(QuestionMapping.typeQuestionBackEndToFrontEnd.get(questionEntity.getTypequestion().getLabel()));
 		questionBO.setAdministrateur(questionEntity.getAdministrateur().getId());
 		
 		List<String> rpBO = new ArrayList<>();
