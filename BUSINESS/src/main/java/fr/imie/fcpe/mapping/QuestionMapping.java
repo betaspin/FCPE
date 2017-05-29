@@ -82,7 +82,7 @@ public class QuestionMapping {
     private static Map<String, String> createMapTypeQuestionFrontEndToBackEnd() {
         Map<String,String> myMap = new HashMap<String,String>();
         myMap.put("radio", "Bouton radio");
-        myMap.put("checkbox", "Case � cocher");
+        myMap.put("checkbox", "Case à cocher");
         myMap.put("text", "Texte Libre");
         myMap.put("date", "Date");
         myMap.put("number", "Nombre");
@@ -96,11 +96,11 @@ public class QuestionMapping {
     private static Map<String, String> createMapTypeQuestionBackEndToFrontEnd() {
         Map<String,String> myMap = new HashMap<String,String>();
         myMap.put("Bouton radio", "radio");
-        myMap.put("Case � cocher", "checkbox");
+        myMap.put("Case à cocher", "checkbox");
         myMap.put("Texte Libre", "text");
         myMap.put("Date", "date");
         myMap.put("Nombre", "number");
-        myMap.put("Liste d�roulante", "checkbox");
+        myMap.put("Liste déroulante", "checkbox");
         return myMap;
     }
 
