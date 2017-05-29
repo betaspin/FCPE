@@ -127,19 +127,23 @@ public class QuestionBU {
     }
     
     public QuestionBO delete(Integer idQuestion) {
-//        QuestionBO question = findOne(idQuestion);
-//        question.setId(idQuestion);
-//        question.setArchive(true);
-//        
-//        // TODO
-//    	TypeQuestionEntity typeQuestionEntity = null;
-//    	// TODO
-//    	AdministrateurEntity administrateurEntity = null;
-//    	// TODO
-//    	List<ReponseProposeeEntity> reponsesProposeesEntity = null;
-//        QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, reponsesProposeesEntity);
-//        em.merge(questionEntity);
-//        return question;
-    	return null;
+        QuestionBO question = findOne(idQuestion);
+        question.setId(idQuestion);
+        question.setArchive(true);
+        
+    	String labelTypeQuestion = QuestionMapping.typeQuestionFrontEndToBackEnd.get(question.getTypeQuestion());
+    	TypeQuestionEntity typeQuestionEntity = (TypeQuestionEntity)em.createNamedQuery("TypeQuestionEntity.findOneByLabel").setParameter("label", labelTypeQuestion).getSingleResult();
+
+    	AdministrateurEntity administrateurEntity = em.find(AdministrateurEntity.class, question.getAdministrateur());
+
+    	List<FormulaireEntity> formulairesEntity = new ArrayList<>();
+    	for (Integer idForm : question.getFormulaires()) {
+    		FormulaireEntity formulaireEntity = em.find(FormulaireEntity.class, idForm);
+    		formulairesEntity.add(formulaireEntity);
+    	}
+    	
+        QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, null, formulairesEntity);
+        em.merge(questionEntity);
+        return question;
     } 
 }
