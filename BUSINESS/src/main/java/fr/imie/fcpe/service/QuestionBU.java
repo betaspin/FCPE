@@ -73,10 +73,11 @@ public class QuestionBU {
     }
 
     public QuestionBO update(QuestionBO question) {
-//    	// TODO
-//    	TypeQuestionEntity typeQuestionEntity = null;
-//    	// TODO
-//    	AdministrateurEntity administrateurEntity = null;
+    	String labelTypeQuestion = QuestionMapping.typeQuestionFrontEndToBackEnd.get(question.getTypeQuestion());
+    	TypeQuestionEntity typeQuestionEntity = (TypeQuestionEntity)em.createNamedQuery("TypeQuestionEntity.findOneByLabel").setParameter("label", labelTypeQuestion).getSingleResult();
+    	
+    	AdministrateurEntity administrateurEntity = em.find(AdministrateurEntity.class, question.getAdministrateur());
+    	
 //    	// TODO
 //    	List<ReponseProposeeEntity> reponsesProposeesEntity = null;
 //        QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, reponsesProposeesEntity);
