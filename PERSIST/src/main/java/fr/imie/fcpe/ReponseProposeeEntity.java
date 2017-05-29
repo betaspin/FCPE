@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -17,7 +18,12 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@NamedQuery(name="ReponseProposeeEntity.findAll", query="SELECT r FROM ReponseProposeeEntity r")
+@NamedQueries({
+	@NamedQuery(name="ReponseProposeeEntity.findAll", query="SELECT r FROM ReponseProposeeEntity r"),
+    @NamedQuery(name="ReponseProposeeEntity.findAllWithQuestionId", query = ""
+    		+ "SELECT DISTINCT rp FROM QuestionEntity q, ReponseProposeeEntity rp JOIN rp.question rpquestion WHERE rpquestion.id = :id")
+})
+
 @Table(name = "reponseproposee")
 public class ReponseProposeeEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

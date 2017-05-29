@@ -46,7 +46,6 @@ public class QuestionBU {
     	
     	AdministrateurEntity administrateurEntity = em.find(AdministrateurEntity.class, question.getAdministrateur());
 
-    	// TODO
     	List<FormulaireEntity> formulairesEntity = new ArrayList<>();
     	for (Integer idForm : question.getFormulaires()) {
     		FormulaireEntity formulaireEntity = em.find(FormulaireEntity.class, idForm);
@@ -78,15 +77,55 @@ public class QuestionBU {
     	
     	AdministrateurEntity administrateurEntity = em.find(AdministrateurEntity.class, question.getAdministrateur());
     	
-//    	// TODO
-//    	List<ReponseProposeeEntity> reponsesProposeesEntity = null;
-//        QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, reponsesProposeesEntity);
-//        questionEntity = em.merge(questionEntity);
-//        question = QuestionMapping.mapQuestionEntityToBO(questionEntity);
-//        return question;
+    	List<FormulaireEntity> formulairesEntity = new ArrayList<>();
+    	for (Integer idForm : question.getFormulaires()) {
+    		FormulaireEntity formulaireEntity = em.find(FormulaireEntity.class, idForm);
+    		formulairesEntity.add(formulaireEntity);
+    	}
+
+    	@SuppressWarnings("unchecked")
+		List<ReponseProposeeEntity> reponsesProposeesEntity = em.createNamedQuery("ReponseProposeeEntity.findAllWithQuestionId").setParameter("id", question.getId()).getResultList();
+
+    	QuestionEntity questionEntity = QuestionMapping.mapQuestionBOToEntity(question, typeQuestionEntity, administrateurEntity, reponsesProposeesEntity, formulairesEntity);
+    	questionEntity = em.merge(questionEntity);
+    	question = QuestionMapping.mapQuestionEntityToBO(questionEntity);
+    	
+    	for (String labelReponseProposee : question.getReponsesProposees()) {
+    		ReponseProposeeEntity reponseProposeeEntityToUpdate = isReponseProposeeToUpdate(labelReponseProposee, reponsesProposeesEntity);
+    		if (reponseProposeeEntityToUpdate != null) {
+    			em.merge(reponseProposeeEntityToUpdate);
+    		}
+    		else {
+        		ReponseProposeeEntity reponseProposeeEntity = new ReponseProposeeEntity();
+        		reponseProposeeEntity.setLabel(labelReponseProposee);
+        		reponseProposeeEntity.setQuestion(questionEntity);
+        		em.persist(reponseProposeeEntity);
+        		reponsesProposeesEntity.add(reponseProposeeEntity);    			
+    		}
+
+		}
+    	
+    	// Persist the question with the link to ReponsesProposees
+    	questionEntity.setReponseproposees(reponsesProposeesEntity);
+    	em.merge(questionEntity);
+    	
+    	return question;
+    }
+    
+    /**
+     * 
+     * @param reponseProposee
+     * @param reponsesProposeesEntity
+     */
+    private ReponseProposeeEntity isReponseProposeeToUpdate(String reponseProposee, List<ReponseProposeeEntity> reponsesProposeesEntity)  {
+    	for (ReponseProposeeEntity reponseProposeeEntity : reponsesProposeesEntity) {
+			if (reponseProposee.equals(reponseProposeeEntity.getLabel())) {
+				return reponseProposeeEntity;
+			}
+		}
     	return null;
     }
-
+    
     public QuestionBO delete(Integer idQuestion) {
 //        QuestionBO question = findOne(idQuestion);
 //        question.setId(idQuestion);

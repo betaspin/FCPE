@@ -28,8 +28,8 @@ public class TypeQuestionRest {
 
     @GET
     @Path("/{id}")
-    public TypeQuestionBO findOne(@PathParam("id") Integer idQuestion){
-        return typeQuestionService.findOne(idQuestion);
+    public TypeQuestionBO findOne(@PathParam("id") Integer idTypeQuestion){
+        return typeQuestionService.findOne(idTypeQuestion);
     }
 
 }

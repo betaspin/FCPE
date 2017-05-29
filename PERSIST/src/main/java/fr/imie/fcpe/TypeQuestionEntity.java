@@ -16,8 +16,6 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-
-
 @NamedQueries({
 	@NamedQuery(name="TypeQuestionEntity.findAll", query="SELECT t FROM TypeQuestionEntity t"),
 	@NamedQuery(name="TypeQuestionEntity.findOneByLabel", query="SELECT t FROM TypeQuestionEntity t where t.label = :label")
