@@ -17,6 +17,7 @@ public class AdministrateurBO {
 	private List<String> roles;
 	private List<Integer> formulaires;
 	private List<Integer> questions;
+	private String token;
 
 	public AdministrateurBO() {
 	}
@@ -158,9 +159,11 @@ public class AdministrateurBO {
 		return question;
 	}
 
+    public String getToken() {
+        return token;
+    }
 
-
-
-
-
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
