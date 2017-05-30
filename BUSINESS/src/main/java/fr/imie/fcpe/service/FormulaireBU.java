@@ -1,18 +1,17 @@
 package fr.imie.fcpe.service;
 
-import fr.imie.fcpe.AdministrateurEntity;
-import fr.imie.fcpe.FormulaireEntity;
-import fr.imie.fcpe.QuestionEntity;
-import fr.imie.fcpe.TypeQuestionEntity;
-import fr.imie.fcpe.mapping.FormulaireMapping;
-import fr.imie.fcpe.mapping.QuestionMapping;
-import fr.imie.fcpe.model.FormulaireBO;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
+
+import fr.imie.fcpe.AdministrateurEntity;
+import fr.imie.fcpe.FormulaireEntity;
+import fr.imie.fcpe.QuestionEntity;
+import fr.imie.fcpe.mapping.FormulaireMapping;
+import fr.imie.fcpe.model.FormulaireBO;
 
 @Stateless
 public class FormulaireBU {
@@ -81,7 +80,7 @@ public class FormulaireBU {
     private List<QuestionEntity> getListQuestionEntity(FormulaireBO formulaire){
 
         List<Integer> listIdQuestion = formulaire.getQuestions();
-        List<QuestionEntity> listQuestions = new ArrayList();
+        List<QuestionEntity> listQuestions = new ArrayList<>();
         QuestionEntity questionEntity;
 
         for (Integer id : listIdQuestion) {
