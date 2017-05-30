@@ -235,4 +235,34 @@ public class AdministrateurEntity implements Serializable {
 		return question;
 	}
 
+
+
+
+	public static AdministrateurEntity administrateurBouchon(){
+
+		AdministrateurEntity admin = new AdministrateurEntity();
+
+
+
+		admin.setId(22);
+		admin.setArchive(false);
+		admin.setEmail("admin22@boss.com");
+		admin.setEtat(true);
+		admin.setIdentifiant("admin");
+		admin.setMotdepasse("pwd");
+		admin.setNom("Name");
+		admin.setPrenom("FirstName");
+		admin.setStatut(true);
+		//	admin.setEtablissements();
+		//	admin.setRoles;
+		//	admin.setFormulaires;
+		//	admin.setQuestions;
+
+
+
+		return admin;
+	}
+
+
+
 }
