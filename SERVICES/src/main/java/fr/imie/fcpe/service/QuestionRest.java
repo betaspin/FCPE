@@ -1,20 +1,15 @@
 package fr.imie.fcpe.service;
 
-import java.util.List;
+import fr.imie.fcpe.mapping.QuestionMap;
+import fr.imie.fcpe.model.QuestionBO;
+import fr.imie.fcpe.model.QuestionJson;
 
 import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import fr.imie.fcpe.model.QuestionBO;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/question")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -25,26 +20,37 @@ public class QuestionRest {
     QuestionBU questionService;
 
     @GET
-    public List<QuestionBO> findAll() {
-    	return questionService.findAll();
+    public List<QuestionJson> findAll() {
+        List<QuestionBO> questionsBO = questionService.findAll();
+
+        List<QuestionJson> questionsJson = new ArrayList<>();
+        for ( QuestionBO questionB : questionsBO ) {
+            QuestionJson questionJ = QuestionMap.mapQuestionBOToJson(questionB);
+            questionsJson.add(questionJ);
+        }
+
+    	return questionsJson;
     }
 
     @GET
     @Path("/{id}")
-    public QuestionBO findOne(@PathParam("id") Integer idQuestion){
-    	return questionService.findOne(idQuestion);
+    public QuestionJson findOne(@PathParam("id") Integer idQuestion){
+        QuestionJson questionJ = QuestionMap.mapQuestionBOToJson(questionService.findOne(idQuestion));
+        return questionJ;
     }
 
     @POST
-    public Response insertQuestion(QuestionBO question) {
-        question = questionService.create(question);
-        return Response.ok(question).build();
+    public Response insertQuestion(QuestionJson questionJson) {
+        QuestionBO questionBO = QuestionMap.mapQuestionJsonToBO(questionJson);
+        questionBO = questionService.create(questionBO);
+        return Response.ok(questionBO).build();
     }
 
     @PUT
-    public Response updateQuestion(QuestionBO question){
-        question = questionService.update(question);
-        return Response.ok(question).build();
+    public Response updateQuestion(QuestionJson questionJson) {
+        QuestionBO questionBO = QuestionMap.mapQuestionJsonToBO(questionJson);
+        questionBO = questionService.update(questionBO);
+        return Response.ok(questionBO).build();
     }
 
     @DELETE
